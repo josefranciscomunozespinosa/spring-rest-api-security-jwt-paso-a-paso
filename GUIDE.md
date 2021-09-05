@@ -1,4 +1,4 @@
-# Protejer una REST API con Spring Security y JWT 
+# Protejer una REST API con Spring Security y JWT
 
 Cuando se diseña una API REST, se debe tener en cuenta cómo proteger la API REST. En una aplicación basada en Spring, Spring Security es una excelente solución de autenticación y autorización, y proporciona varias opciones para proteger sus API REST.
 
@@ -31,12 +31,12 @@ Vamos allá!
 
 La forma más rápida de crear un nuevo proyecto Spring Boot es usar [Spring Initializr](http://start.spring.io) para generar los códigos base.
 
-Abre el navegador y ve a http://start.spring.io. En el campo **Dependencias**, seleccione 
+Abre el navegador y ve a http://start.spring.io. En el campo **Dependencias**, seleccione
 
- - Web
- - Security
- - JPA
- - Lombok 
+- Web
+- Security
+- JPA
+- Lombok
 
 Luego haga clic en el botón **Generar** o presione **ALT + ENTRAR** claves para generar el proyecto.
 
@@ -223,18 +223,21 @@ logging:
 
 ```
 
-Ahora es el momento de arrancar y una vez lo hagamos tendremos que fijarnos en los logs en el password que nos ha creado spring security por defecto para nuestro usuario user
+Ahora es el momento de arrancar y una vez lo hagamos tendremos que fijarnos en los logs en el password que nos ha creado spring security por defecto para nuestro usuario **user**
 
     Using generated security password: 459da715-9ea1-4447-a0d6-46e0ba979b69
 
 
-Pero de momento nos será más útil comentar la dependencia de spring security para evitarnos meter el usuario y password continuamente.
+Podemos hacer diferentes pruebas con **Postman** para ver que nos funciona y que introduciendo ese usuario y password nos funciona.
 
 Ahora es el momento de probar que funciona. Hay varias formas. Puedes utilizar postman, el propio navegador o otra forma puede ser con curl:
 
 Abra una terminal, use `curl` para probar las API.
 ```
 >curl http://localhost:8080/v1/vehicles
+```
+Responderá lo siguiente:
+```
 [ {
   "id" : 1,
   "name" : "moto"
@@ -243,6 +246,10 @@ Abra una terminal, use `curl` para probar las API.
   "name" : "car"
 } ]
 ```
+
+Para las siguientes pruebas y hasta que tengamos nuestra API terminada (sin securizarla) nos será útil comentar la dependencia de spring security para evitarnos meter el usuario y password continuamente.
+
+Haz la prueba de que te funciona correctamente y no te pide ni el usuario ni la contraseña ni aparece en los logs.
 
 ## Paso 2 - Exponer la API directamente desde el repositorio
 
@@ -390,7 +397,7 @@ public class JwtTokenFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain filterChain)
-        throws IOException, ServletException {
+            throws IOException, ServletException {
 
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) req);
         if (token != null && jwtTokenProvider.validateToken(token)) {
@@ -402,7 +409,7 @@ public class JwtTokenFilter extends GenericFilterBean {
 }
 ```
 
-Usa `JwtTokenProvider` para tratar con JWT, como generar token JWT, analizar reclamaciones JWT. Si os fijáis aquí está obteniendo dos variables de las properties a través de la anotación @Value. Tendremos que introducirlas en nuestro fichero yml o usará las que hemos marcado por defecto (que son muy cortas). 
+Utilizaremos `JwtTokenProvider` para tratar con JWT, como generar token JWT, analizar reclamaciones JWT. Si os fijáis aquí está obteniendo dos variables de las properties a través de la anotación @Value. Tendremos que introducirlas en nuestro fichero yml o usará las que hemos marcado por defecto después de los dos puntos (que son más cortas de lo recomendado).
 
 ```java
 
@@ -472,7 +479,7 @@ public class JwtTokenProvider {
 
 }
 ```
-
+Properties
 ```properties
 security:
   jwt:
@@ -693,9 +700,9 @@ public class UserInfoController {
         Map<Object, Object> model = new HashMap<>();
         model.put("username", userDetails.getUsername());
         model.put("roles", userDetails.getAuthorities()
-            .stream()
-            .map(a -> ((GrantedAuthority) a).getAuthority())
-            .collect(toList())
+                .stream()
+                .map(a -> ((GrantedAuthority) a).getAuthority())
+                .collect(toList())
         );
         return ok(model);
     }
@@ -754,7 +761,7 @@ public PasswordEncoder passwordEncoder() {
 }
 ```
 
-Compilamos todo y arrancamos de nuevo! :) 
+Compilamos todo y arrancamos de nuevo! :)
 
 
 Como ya sabemos podemos hacer la prueba del login desde diferentes clientes, en este caso usaremos `curl`:
@@ -843,7 +850,7 @@ public class OpenApi30Config {
 }
 ```
 
-Si arrancamos Spring boot de nuevo y accedemos a la url de swagger veremos que ahora nos aparece un botón con un candado. 
+Si arrancamos Spring boot de nuevo y accedemos a la url de swagger veremos que ahora nos aparece un botón con un candado.
 
 Intentamos obtener todos los usuarios y obtenemos lo siguiente:
 
