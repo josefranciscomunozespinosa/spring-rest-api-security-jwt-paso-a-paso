@@ -31,7 +31,7 @@ Vamos allá!
 
 La forma más rápida de crear un nuevo proyecto Spring Boot es usar [Spring Initializr](http://start.spring.io) para generar los códigos base.
 
-abre el navegador y ve a http://start.spring.io. En el campo **Dependencias**, seleccione 
+Abre el navegador y ve a http://start.spring.io. En el campo **Dependencias**, seleccione 
 
  - Web
  - Security
@@ -128,9 +128,9 @@ public class VehicleController {
 }
 ```
 
-Es simple y estúpido. Definimos una `VehicleNotFoundException` que se lanzará si el vehículo no es encontrado por id.
+Definimos una `VehicleNotFoundException` que se lanzará si el vehículo no es encontrado por id. El nombre de la excepción es bastante absurdo, lo sé. En la vida real si tuviesemos una aplicación más compleja lo normal sería crear una excepción genérica que pueda ser utilizada en más recursos como podría ser `RecurseNotFoundException`. Pero esto es una aplicación de prueba y no vamos a hacerla perfecta :)
 
-Cree un exception handler simple para manejar nuestras excepciones personalizadas.
+Creamos un exception handler simple para manejar nuestras excepciones personalizadas. Es muy importante que nos fijemos en las anotaciones que estamos poniendo y cuando debugueemos la aplicación pongamos puntos de parada en estas líneas para ver cuando pasa por aquí.
 
 
 ```java
@@ -176,7 +176,7 @@ public class DataInitializer implements CommandLineRunner {
 
 ```
 
-Dependiendo de la base de datos que vayamos a utilizar añadiremos una configuración u otra. En este caso MySQL. Por tanto lo primero añadimos la dependencia al driver
+Dependiendo de la base de datos que vayamos a utilizar añadiremos una configuración u otra. En este caso MySQL. Por tanto lo primero añadimos la dependencia al driver en nuestro pom.xml
 
 ```XML
     <!-- MySql -->
@@ -188,7 +188,7 @@ Dependiendo de la base de datos que vayamos a utilizar añadiremos una configura
 
 ```
 
-Y seguidamente la configuración para que acceda a nuestra BBDD. En este caso utilizaremos un fichero yml
+Y seguidamente la configuración para que acceda a nuestra BBDD. En este caso utilizaremos un fichero yml.
 
 ```yml
 server:
