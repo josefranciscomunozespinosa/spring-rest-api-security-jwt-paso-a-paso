@@ -10,12 +10,12 @@ Además de estos, Spring Security OAuth (un subproyecto bajo Spring Security) pr
 
 Pero para aquellas aplicaciones que son propiedad del propietario del recurso y no hay un plan para exponer estas API a aplicaciones de terceros, una simple autorización basada en token JWT es más simple y razonable (no necesitamos administrar las credenciales de aplicaciones cliente de terceros). Spring Security en sí no ofrece esa opción; afortunadamente, no es difícil implementarlo entretejiendo nuestro filtro personalizado en la Cadena de filtros de Spring Security. En este ejercicio guiado, crearemos una solución de autenticación JWT personalizada.
 
-En esta aplicación de test, el flujo de autenticación basado en token JWT personalizado se puede designar como los siguientes pasos.
+En esta aplicación, el flujo de autenticación basado en token JWT personalizado se puede designar como los siguientes pasos.
 
 
-1. Obtener el token basado en JWT del punto final de autenticación, por ejemplo, `/auth/signin`.
+1. Obtener el token basado en JWT del endpoint de autenticación, por ejemplo, `/auth/signin`.
 2. Extraer el token del resultado de la autenticación.
-3. Establezca el valor de `Authorization` del encabezado HTTP como `Bearer jwt_token`.
+3. Estableceremos el valor de `Authorization` del encabezado HTTP como `Bearer jwt_token`.
 4. Luego enviamos una solicitud para acceder a los recursos protegidos.
 5. Si el recurso solicitado está protegido, Spring Security usará nuestro `Filter` personalizado para validar el token JWT, y creará un objeto de` Authentication` y lo configurará en el `SecurityContextHolder` específico de Spring Security para completar el progreso de la autenticación.
 6. Si el token JWT es válido, devolverá el recurso solicitado al cliente.
