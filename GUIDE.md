@@ -189,6 +189,7 @@ Dependiendo de la base de datos que vayamos a utilizar añadiremos una configura
 ```
 
 Y seguidamente la configuración para que acceda a nuestra BBDD. En este caso utilizaremos un fichero yml.
+
 src/main/resources/application.yml
 ```yml
 server:
@@ -196,7 +197,7 @@ server:
 
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver 
     url: jdbc:mysql://localhost:3306/testdb
     username: root
     password: root
