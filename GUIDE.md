@@ -280,7 +280,7 @@ Ahora es el momento de arrancar y una vez lo hagamos tendremos que fijarnos en l
 
 Podemos hacer diferentes pruebas con **Postman** para ver que nos funciona y que introduciendo ese usuario y password nos funciona.
 
-![postman](../authentification.png)
+![postman](authentification.png)
 
 Hay varias formas de probar que funciona. Puedes utilizar postman, el propio navegador o otra forma puede ser con curl:
 
