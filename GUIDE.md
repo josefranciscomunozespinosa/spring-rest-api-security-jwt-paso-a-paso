@@ -915,6 +915,21 @@ Para ello crearemos una clase nueva  `OpenApi30Config ` que definirá nuestro  `
 Y luego, configuramos nuestro bean API Docket para incluir información de API, contextos de seguridad y esquemas de seguridad
 
 ```java
+package es.eoi.restapiwithspringsecurityandjwt.config.swagger;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.*;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
+import springfox.documentation.spring.web.plugins.Docket;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 @Configuration
 public class OpenApi30Config {
 
