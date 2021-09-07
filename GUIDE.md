@@ -273,7 +273,7 @@ logging:
 
 ```
 
-Ahora es el momento de arrancar y una vez lo hagamos tendremos que fijarnos en los logs en el password que nos ha creado spring security por defecto para nuestro usuario **user**
+Ahora es el momento de arrancar y una vez lo hagamos tendremos que fijarnos en los logs en el password que nos ha creado spring security por defecto para nuestro usuario **user**. En mi caso en los logs de spring aparece lo siguiente:
 
     Using generated security password: 459da715-9ea1-4447-a0d6-46e0ba979b69
 
