@@ -128,6 +128,25 @@ public class VehicleController {
 }
 ```
 
+```java
+package es.eoi.restapiwithspringsecurityandjwt.web;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class VehicleForm {
+    private String name;
+}
+
+```
+
+
 Definimos una `VehicleNotFoundException` que se lanzará si el vehículo no es encontrado por id. El nombre de la excepción es bastante absurdo, lo sé. En la vida real si tuviesemos una aplicación más compleja lo normal sería crear una excepción genérica que pueda ser utilizada en más recursos como podría ser `RecurseNotFoundException`. Pero esto es una aplicación de prueba y no vamos a hacerla perfecta :)
 
 Creamos un exception handler simple para manejar nuestras excepciones personalizadas. Es muy importante que nos fijemos en las anotaciones que estamos poniendo y cuando debugueemos la aplicación pongamos puntos de parada en estas líneas para ver cuando pasa por aquí.
