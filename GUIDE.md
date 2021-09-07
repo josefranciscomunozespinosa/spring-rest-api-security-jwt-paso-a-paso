@@ -184,17 +184,7 @@ public class RestExceptionHandler {
 }	
 ```
 
-```java
-package es.eoi.restapiwithspringsecurityandjwt.exceptions;
-
-import org.springframework.security.core.AuthenticationException;
-
-public class InvalidJwtAuthenticationException extends AuthenticationException {
-    public InvalidJwtAuthenticationException(String e) {
-        super(e);
-    }
-}
-```
+La clase InvalidJwtAuthenticationException la crearemos después.
 
 
 Crea un `CommandLineRunner` bean para inicializar algunos datos de vehículos en la etapa de inicio de la aplicación.
@@ -560,6 +550,18 @@ public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilt
     public void configure(HttpSecurity http) throws Exception {
         JwtTokenFilter customFilter = new JwtTokenFilter(jwtTokenProvider);
         http.addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+}
+```
+
+```java
+package es.eoi.restapiwithspringsecurityandjwt.exceptions;
+
+import org.springframework.security.core.AuthenticationException;
+
+public class InvalidJwtAuthenticationException extends AuthenticationException {
+    public InvalidJwtAuthenticationException(String e) {
+        super(e);
     }
 }
 ```
