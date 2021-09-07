@@ -149,6 +149,20 @@ public class VehicleForm {
 
 Definimos una `VehicleNotFoundException` que se lanzará si el vehículo no es encontrado por id. El nombre de la excepción es bastante absurdo, lo sé. En la vida real si tuviesemos una aplicación más compleja lo normal sería crear una excepción genérica que pueda ser utilizada en más recursos como podría ser `RecurseNotFoundException`. Pero esto es una aplicación de prueba y no vamos a hacerla perfecta :)
 
+```java
+package es.eoi.restapiwithspringsecurityandjwt.exceptions;
+
+public class VehicleNotFoundException extends RuntimeException {
+    public VehicleNotFoundException() {
+    }
+
+    public VehicleNotFoundException(Long vehicleId ) {
+        super("Vehicle: " +vehicleId +" not found.");
+    }
+}
+
+```
+
 Creamos un exception handler simple para manejar nuestras excepciones personalizadas. Es muy importante que nos fijemos en las anotaciones que estamos poniendo y cuando debugueemos la aplicación pongamos puntos de parada en estas líneas para ver cuando pasa por aquí.
 
 
@@ -554,19 +568,6 @@ public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilt
 }
 ```
 
-```java
-package es.eoi.restapiwithspringsecurityandjwt.exceptions;
-
-public class VehicleNotFoundException extends RuntimeException {
-    public VehicleNotFoundException() {
-    }
-
-    public VehicleNotFoundException(Long vehicleId ) {
-        super("Vehicle: " +vehicleId +" not found.");
-    }
-}
-
-```
 
 Usaremos este configurador en nuestra aplicación de ámbito `SecurityConfig`. Autorizamos algunas rutas para que no estén securizadas, como por ejemplo las url que utiliza swagger
 
