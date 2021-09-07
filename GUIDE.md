@@ -638,6 +638,30 @@ Para habilitar Spring Security, tenemos que proporcionar un bean `UserDetailsSer
 
 El `CustomUserDetailsService` está tratando de obtener datos de usuario por nombre de usuario de la base de datos.
 
+```java
+import es.eoi.restapiwithspringsecurityandjwt.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomUserDetailsService implements UserDetailsService {
+
+    private UserRepository users;
+
+    public CustomUserDetailsService(UserRepository users) {
+        this.users = users;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return //TODO + 
+               // .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found"));
+    }
+}
+
+```
 El `User` es una entidad JPA estándar, y para simplificar el trabajo, también implementa la interfaz específica de Spring Security` UserDetails`.
 
 
