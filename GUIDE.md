@@ -557,13 +557,15 @@ public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilt
 ```java
 package es.eoi.restapiwithspringsecurityandjwt.exceptions;
 
-import org.springframework.security.core.AuthenticationException;
+public class VehicleNotFoundException extends RuntimeException {
+    public VehicleNotFoundException() {
+    }
 
-public class InvalidJwtAuthenticationException extends AuthenticationException {
-    public InvalidJwtAuthenticationException(String e) {
-        super(e);
+    public VehicleNotFoundException(Long vehicleId ) {
+        super("Vehicle: " +vehicleId +" not found.");
     }
 }
+
 ```
 
 Usaremos este configurador en nuestra aplicación de ámbito `SecurityConfig`. Autorizamos algunas rutas para que no estén securizadas, como por ejemplo las url que utiliza swagger
