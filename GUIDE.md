@@ -625,11 +625,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     
     private static final String[] AUTH_WHITELIST = {
-            "/swagger-ui/**",
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
             "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
             "/swagger-ui.html",
-            "/v3/api-docs",
-            "/webjars/**"
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**"
+            // aqui podemos añadir todos los endpoints que queramos que no sean autentificados
     };
 }
 ```
